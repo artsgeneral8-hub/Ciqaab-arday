@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shabakadda La Xisaabtanka Ardayda</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#eef4f8;
+    color:#172033;
+}
+
+header{
+    background:linear-gradient(135deg,#064e3b,#0891b2);
+    color:white;
+    text-align:center;
+    padding:25px 15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+header h1{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+header p{
+    font-size:14px;
+    opacity:.9;
+}
+
+.container{
+    width:95%;
+    max-width:1250px;
+    margin:20px auto;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.stat{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.stat .number{
+    font-size:30px;
+    font-weight:bold;
+    color:#0891b2;
+}
+
+.stat p{
+    margin-top:5px;
+    color:#64748b;
+}
+
+/* NAVIGATION */
+
+.nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.nav button{
+    border:0;
+    background:white;
+    color:#334155;
+    padding:12px 16px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
+}
+
+.nav button:hover,
+.nav button.active{
+    background:#0891b2;
+    color:white;
+}
+
+/* SECTIONS */
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.panel{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
+}
+
+.panel h2{
+    color:#075985;
+    margin-bottom:16px;
+}
+
+/* FORMS */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.field{
+    margin-bottom:5px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #cbd5e1;
+    border-radius:9px;
+    font-size:15px;
+    outline:none;
+    background:white;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#0891b2;
+    box-shadow:0 0 0 2px rgba(8,145,178,.12);
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+/* BUTTONS */
+
+.btn{
+    border:0;
+    border-radius:9px;
+    padding:12px 18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn-primary{
+    background:#0891b2;
+    color:white;
+}
+
+.btn-danger{
+    background:#dc2626;
+    color:white;
+}
+
+.btn-success{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-secondary{
+    background:#64748b;
+    color:white;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+/* STUDENTS */
+
+.classes{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.class-card{
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:16px;
+}
+
+.class-card h3{
+    color:#075985;
+    margin-bottom:12px;
+}
+
+.student{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:11px;
+    margin-bottom:7px;
+    background:#f8fafc;
+    border-radius:9px;
+    border-left:4px solid #0891b2;
+}
+
+.student-name{
+    font-weight:bold;
+}
+
+.student-number{
+    color:#64748b;
+    font-size:12px;
+    margin-top:3px;
+}
+
+/* BADGES */
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.badge-clean{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.badge-danger{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.badge-warning{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+/* RULES */
+
+.rule{
+    padding:15px;
+    margin-bottom:10px;
+    border:1px solid #e2e8f0;
+    border-radius:10px;
+    background:#f8fafc;
+}
+
+.rule-number{
+    color:#0891b2;
+    font-weight:bold;
+}
+
+.rule-title{
+    font-weight:bold;
+    margin-top:4px;
+}
+
+.rule-description{
+    color:#64748b;
+    margin-top:5px;
+    font-size:14px;
+}
+
+/* SEARCH */
+
+.search{
+    margin-bottom:15px;
+}
+
+/* TABLE */
+
+.table-wrapper{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    min-width:850px;
+    border-collapse:collapse;
+}
+
+th{
+    background:#075985;
+    color:white;
+    padding:12px;
+    text-align:left;
+}
+
+td{
+    padding:11px;
+    border-bottom:1px solid #e2e8f0;
+}
+
+tr:hover{
+    background:#f8fafc;
+}
+
+.delete-btn{
+    background:#dc2626;
+    color:white;
+    border:0;
+    padding:7px 10px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+/* ALERT */
+
+.alert{
+    padding:14px;
+    border-radius:9px;
+    margin-bottom:15px;
+}
+
+.alert-info{
+    background:#e0f2fe;
+    color:#075985;
+}
+
+.alert-warning{
+    background:#fff7ed;
+    color:#9a3412;
+}
+
+/* REPEAT */
+
+.repeat-card{
+    background:#fff1f2;
+    border-left:5px solid #dc2626;
+    padding:16px;
+    border-radius:10px;
+    margin-bottom:12px;
+}
+
+.repeat-card h3{
+    color:#991b1b;
+}
+
+.repeat-details{
+    margin-top:10px;
+    color:#475569;
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#64748b;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+.dashboard{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.classes{
+    grid-template-columns:1fr;
+}
+
+.form-grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:500px){
+
+header h1{
+    font-size:20px;
+}
+
+.container{
+    width:94%;
+}
+
+.nav button{
+    flex:1 1 45%;
+    font-size:12px;
+}
+
+.stat{
+    padding:15px 8px;
+}
+
+.stat .number{
+    font-size:24px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🏫 SHABAKADDA LA XISAABTANKA ARDAYDA</h1>
+
+<p>
+Nidaamka Diiwaangelinta Xeerarka, Khaladaadka iyo La Xisaabtanka Ardayda
+</p>
+
+</header>
+
+
+<div class="container">
+
+<!-- DASHBOARD -->
+
+<div class="dashboard">
+
+<div class="stat">
+<div class="number" id="totalStudents">40</div>
+<p>Ardayda</p>
+</div>
+
+<div class="stat">
+<div class="number">4</div>
+<p>Fasallada</p>
+</div>
+
+<div class="stat">
+<div class="number" id="totalCases">0</div>
+<p>Dhacdooyinka</p>
+</div>
+
+<div class="stat">
+<div class="number" id="totalPoints">0</div>
+<p>Points</p>
+</div>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<div class="nav">
+
+<button class="active" onclick="showSection('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button onclick="showSection('students',this)">
+👨‍🎓 Ardayda
+</button>
+
+<button onclick="showSection('rules',this)">
+📜 Xeerarka
+</button>
+
+<button onclick="showSection('register',this)">
+⚠️ Xaree Khalad
+</button>
+
+<button onclick="showSection('records',this)">
+📋 Diiwaanka
+</button>
+
+<button onclick="showSection('repeat',this)">
+🔁 Soo Noqday
+</button>
+
+</div>
+
+
+<!-- DASHBOARD SECTION -->
+
+<section id="dashboard" class="section active">
+
+<div class="panel">
+
+<h2>📊 Dashboard-ka Maamulka</h2>
+
+<div class="alert alert-info">
+
+<strong>Nidaamka:</strong>
+
+Marka arday khalad galo, dooro fasalka,
+ardayga, xeerka uu jebiyey, qirashada iyo Points-ka.
+Kadib riix <strong>XAREE KHALADKA</strong>.
+
+</div>
+
+<h3>Dhacdooyinkii ugu dambeeyey</h3>
+
+<br>
+
+<div id="recentCases"></div>
+
+</div>
+
+</section>
+
+
+<!-- STUDENTS -->
+
+<section id="students" class="section">
+
+<div class="panel">
+
+<h2>👨‍🎓 Liiska Ardayda</h2>
+
+<input
+type="text"
+id="studentSearch"
+class="search"
+placeholder="🔎 Raadi magaca ardayga..."
+oninput="displayStudents()"
+>
+
+<div id="studentsContainer" class="classes"></div>
+
+</div>
+
+</section>
+
+
+<!-- RULES -->
+
+<section id="rules" class="section">
+
+<div class="panel">
+
+<h2>📜 Xeerarka Ardayda</h2>
+
+<div id="rulesContainer"></div>
+
+</div>
+
+</section>
+
+
+<!-- REGISTER -->
+
+<section id="register" class="section">
+
+<div class="panel">
+
+<h2>⚠️ Xaree Khaladka Ardayga</h2>
+
+<div class="alert alert-warning">
+
+Marka aad heshid xeerka uu ardaygu jebiyey,
+dooro xeerkaas kadibna diiwaangeli dhacdada.
+
+</div>
+
+
+<div class="form-grid">
+
+<div>
+
+<label>1. Fasalka</label>
+
+<select id="caseClass" onchange="updateStudentsList()">
+
+<option value="">-- Dooro Fasalka --</option>
+
+<option value="Fasalka 1aad">
+Fasalka 1aad
+</option>
+
+<option value="Fasalka 2aad">
+Fasalka 2aad
+</option>
+
+<option value="Fasalka 3aad">
+Fasalka 3aad
+</option>
+
+<option value="Fasalka 4aad">
+Fasalka 4aad
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>2. Ardayga</label>
+
+<select id="caseStudent">
+
+<option value="">
+-- Marka hore dooro fasalka --
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>3. Xeerka uu jebiyey</label>
+
+<select id="caseRule">
+
+<option value="">
+-- Dooro Xeerka --
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>4. Ardaygu ma qirtay?</label>
+
+<select id="confession">
+
+<option value="Haa">
+Haa — Wuu qirtay
+</option>
+
+<option value="Maya">
+Maya — Wuu diiday
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>5. Points / Marks</label>
+
+<input
+type="number"
+id="points"
+min="0"
+placeholder="Tusaale: 10"
+>
+
+</div>
+
+
+<div>
+
+<label>6. Taariikhda</label>
+
+<input
+type="date"
+id="caseDate"
+>
+
+</div>
+
+</div>
+
+
+<div style="margin-top:15px">
+
+<label>7. Faahfaahinta</label>
+
+<textarea
+id="description"
+placeholder="Qor waxa dhacay..."
+></textarea>
+
+</div>
+
+
+<button
+class="btn btn-primary"
+style="margin-top:15px"
+onclick="registerCase()"
+>
+
+💾 XAREE KHALADKA
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- RECORDS -->
+
+<section id="records" class="section">
+
+<div class="panel">
+
+<h2>📋 Dhammaan Diiwaannada</h2>
+
+<input
+type="text"
+id="recordSearch"
+class="search"
+placeholder="🔎 Raadi arday ama xeer..."
+oninput="displayRecords()"
+>
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+<th>Ardayga</th>
+<th>Fasalka</th>
+<th>Xeerka</th>
+<th>Qirasho</th>
+<th>Points</th>
+<th>Taariikh</th>
+<th>Ficil</th>
+
+</tr>
+
+</thead>
+
+<tbody id="recordsBody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REPEAT -->
+
+<section id="repeat" class="section">
+
+<div class="panel">
+
+<h2>🔁 Ardayda Khaladku Ku Soo Noqday</h2>
+
+<p style="color:#64748b;margin-bottom:15px">
+
+Halkan waxaa ka muuqanaya ardayda loo diiwaangeliyey
+laba dhacdo ama ka badan.
+
+</p>
+
+<div id="repeatContainer"></div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   LIISKA ARDAYDA
+===================================================== */
+
+const students = {
+
+"Fasalka 1aad":[
+"Cabdirahman Maxamed",
+"Ahmed Cabdi",
+"Abdullahi Xasan",
+"Yasin Warsame",
+"Mahad Axmed",
+"Zakariye Ali",
+"Mohamed Abdi",
+"Ismail Hassan",
+"Abdirizak Omar",
+"Hamza Yusuf"
+],
+
+"Fasalka 2aad":[
+"Abdikariin Hassan",
+"Abdirahman Ali",
+"Ahmed Mohamed",
+"Abdiqadir Yusuf",
+"Mustafa Abdi",
+"Farah Omar",
+"Yusuf Hassan",
+"Mahdi Warsame",
+"Ismail Ahmed",
+"Abdulaziz Mohamed"
+],
+
+"Fasalka 3aad":[
+"Abdullahi Warsame",
+"Abdi Mohamed",
+"Ahmed Hassan",
+"Abdirahman Yusuf",
+"Osman Ali",
+"Mahad Mohamed",
+"Zakariye Hassan",
+"Farhan Abdi",
+"Yasin Ahmed",
+"Abdinasir Omar"
+],
+
+"Fasalka 4aad":[
+"Abdikani Karahye",
+"Zakariye Ahmed",
+"Abdi Yarayn",
+"Abdirahman Farah",
+"Ahmed Taarikh",
+"Farah Warsame",
+"Abdulahi Osman",
+"Mohamed Yusuf",
+"Abdirizak Hassan",
+"Mustafa Ahmed"
+]
+
+};
+
+
+/* =====================================================
+   XEERARKA
+===================================================== */
+
+const rules = [
+
+{
+id:1,
+title:"Fasalka ka maqnaansho",
+description:"Ardaygu fasalka ayuu ka maqnaaday sabab la'aan."
+},
+
+{
+id:2,
+title:"Hadal aan habboonayn",
+description:"Ardaygu wuxuu isticmaalay hadal aan ku habboonayn deegaanka waxbarashada."
+},
+
+{
+id:3,
+title:"Buuq iyo qas",
+description:"Ardaygu wuxuu sameeyey buuq ama qas gudaha ama agagaarka fasalka."
+},
+
+{
+id:4,
+title:"Amar-diiddo",
+description:"Ardaygu wuxuu diiday amar ama tilmaam loo soo jeediyey."
+},
+
+{
+id:5,
+title:"Khilaaf arday kale",
+description:"Ardaygu wuxuu galay khilaaf ama muran arday kale."
+},
+
+{
+id:6,
+title:"Been ama xog aan sax ahayn",
+description:"Ardaygu wuxuu bixiyey xog aan sax ahayn ama been."
+},
+
+{
+id:7,
+title:"Waxyeello hanti",
+description:"Ardaygu wuxuu waxyeelleeyey hanti dugsi."
+},
+
+{
+id:8,
+title:"Anshax-xumo",
+description:"Ardaygu wuxuu sameeyey fal aan waafaqsanayn xeerarka ardayda."
+},
+
+{
+id:9,
+title:"Isticmaalka telefoonka si aan la oggolayn",
+description:"Ardaygu wuxuu isticmaalay telefoon xilli aan loo oggolayn."
+},
+
+{
+id:10,
+title:"Faragelin shaqada ardayda kale",
+description:"Ardaygu wuxuu carqaladeeyey ama farageliyey shaqada arday kale."
+}
+
+];
+
+
+/* =====================================================
+   KAYDINTA XOGTA
+===================================================== */
+
+let cases =
+JSON.parse(localStorage.getItem("studentAccountabilityCases"))
+|| [];
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function showSection(id,button){
+
+document.querySelectorAll(".section")
+.forEach(section=>{
+section.classList.remove("active");
+});
+
+document.getElementById(id)
+.classList.add("active");
+
+document.querySelectorAll(".nav button")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+button.classList.add("active");
+
+}
+
+
+/* =====================================================
+   ARDAYDA
+===================================================== */
+
+function displayStudents(){
+
+const container =
+document.getElementById("studentsContainer");
+
+const search =
+document.getElementById("studentSearch")
+.value
+.toLowerCase()
+.trim();
+
+container.innerHTML="";
+
+Object.keys(students).forEach(className=>{
+
+let html=`
+
+<div class="class-card">
+
+<h3>📚 ${className}</h3>
+
+`;
+
+students[className].forEach((student,index)=>{
+
+if(
+search &&
+!student.toLowerCase().includes(search)
+)return;
+
+const studentCases =
+getStudentCases(student);
+
+const number =
+String(index+1).padStart(2,"0");
+
+html+=`
+
+<div class="student">
+
+<div>
+
+<div class="student-name">
+${student}
+</div>
+
+<div class="student-number">
+No: ${number}
+</div>
+
+</div>
+
+<div>
+
+${
+studentCases.length === 0
+
+?
+
+`<span class="badge badge-clean">
+Nadiif
+</span>`
+
+:
+
+`<span class="badge badge-danger">
+${studentCases.length} Dhacdo
+</span>`
+}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+html+=`</div>`;
+
+container.innerHTML+=html;
+
+});
+
+}
+
+
+/* =====================================================
+   XEERARKA
+===================================================== */
+
+function displayRules(){
+
+const container =
+document.getElementById("rulesContainer");
+
+container.innerHTML="";
+
+rules.forEach(rule=>{
+
+container.innerHTML+=`
+
+<div class="rule">
+
+<div class="rule-number">
+XEERKA ${rule.id}
+</div>
+
+<div class="rule-title">
+${rule.title}
+</div>
+
+<div class="rule-description">
+${rule.description}
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =====================================================
+   XEERARKA FORM-KA
+===================================================== */
+
+function loadRules(){
+
+const select =
+document.getElementById("caseRule");
+
+rules.forEach(rule=>{
+
+const option =
+document.createElement("option");
+
+option.value=rule.id;
+
+option.textContent=
+"Xeerka "+rule.id+" — "+rule.title;
+
+select.appendChild(option);
+
+});
+
+}
+
+
+/* =====================================================
+   ARDAYDA FORM-KA
+===================================================== */
+
+function updateStudentsList(){
+
+const className =
+document.getElementById("caseClass").value;
+
+const select =
+document.getElementById("caseStudent");
+
+select.innerHTML=
+'<option value="">-- Dooro Ardayga --</option>';
+
+if(!className)return;
+
+students[className].forEach((student,index)=>{
+
+const option =
+document.createElement("option");
+
+option.value=student;
+
+option.textContent=
+String(index+1).padStart(2,"0")
++" — "
++student;
+
+select.appendChild(option);
+
+});
+
+}
+
+
+/* =====================================================
+   XAREE KHALAD
+===================================================== */
+
+function registerCase(){
+
+const className =
+document.getElementById("caseClass").value;
+
+const student =
+document.getElementById("caseStudent").value;
+
+const ruleId =
+document.getElementById("caseRule").value;
+
+const confession =
+document.getElementById("confession").value;
+
+const pointsInput =
+document.getElementById("points").value;
+
+const date =
+document.getElementById("caseDate").value;
+
+const description =
+document.getElementById("description").value.trim();
+
+
+/* Hubinta xogta */
+
+if(!className){
+
+alert("❌ Fadlan dooro fasalka.");
+
+return;
+
+}
+
+if(!student){
+
+alert("❌ Fadlan dooro ardayga.");
+
+return;
+
+}
+
+if(!ruleId){
+
+alert("❌ Fadlan dooro xeerka.");
+
+return;
+
+}
+
+if(pointsInput === ""){
+
+alert("❌ Fadlan geli Points-ka.");
+
+return;
+
+}
+
+if(!date){
+
+alert("❌ Fadlan dooro taariikhda.");
+
+return;
+
+}
+
+
+/* Hel Xeerka */
+
+const rule =
+rules.find(
+r => String(r.id) === String(ruleId)
+);
+
+
+/* Samee diiwaanka */
+
+const newCase={
+
+id:Date.now()
++
+Math.floor(Math.random()*1000),
+
+student:student,
+
+className:className,
+
+ruleId:Number(ruleId),
+
+rule:rule.title,
+
+confession:confession,
+
+points:Number(pointsInput),
+
+date:date,
+
+description:description,
+
+createdAt:new Date().toLocaleString()
+
+};
+
+
+/* Ku dar array-ga */
+
+cases.push(newCase);
+
+
+/* Kaydi */
+
+localStorage.setItem(
+"studentAccountabilityCases",
+JSON.stringify(cases)
+);
+
+
+/* Farriin */
+
+alert(
+"✅ Khaladka si guul leh ayaa loo xareeyey!\n\n"
++
+"Arday: "+student
++
+"\nXeer: "+rule.title
++
+"\nPoints: "+pointsInput
+);
+
+
+/* Nadiifi form-ka */
+
+document.getElementById("caseClass").value="";
+
+document.getElementById("caseStudent").innerHTML=
+'<option value="">-- Marka hore dooro fasalka --</option>';
+
+document.getElementById("caseRule").value="";
+
+document.getElementById("confession").value="Haa";
+
+document.getElementById("points").value="";
+
+document.getElementById("description").value="";
+
+document.getElementById("caseDate").value=
+getToday();
+
+
+/* Cusboonaysii wax walba */
+
+updateDashboard();
+
+displayStudents();
+
+displayRecords();
+
+displayRepeat();
+
+displayRecent();
+
+}
+
+
+/* =====================================================
+   HEL ARDAYGA DHACDOOYINKIISA
+===================================================== */
+
+function getStudentCases(student){
+
+return cases.filter(
+item => item.student === student
+);
+
+}
+
+
+/* =====================================================
+   DIWAANKA
+===================================================== */
+
+function displayRecords(){
+
+const body =
+document.getElementById("recordsBody");
+
+const search =
+document.getElementById("recordSearch")
+.value
+.toLowerCase()
+.trim();
+
+body.innerHTML="";
+
+
+const filtered =
+cases.filter(item=>{
+
+return (
+
+item.student
+.toLowerCase()
+.includes(search)
+
+||
+
+item.rule
+.toLowerCase()
+.includes(search)
+
+||
+
+item.className
+.toLowerCase()
+.includes(search)
+
+);
+
+});
+
+
+if(filtered.length===0){
+
+body.innerHTML=`
+
+<tr>
+
+<td colspan="8" class="empty">
+
+📭 Wax diiwaan ah lama helin.
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+/* Ugu cusub marka hore */
+
+const sorted =
+[...filtered].reverse();
+
+
+sorted.forEach((item,index)=>{
+
+const tr =
+document.createElement("tr");
+
+
+tr.innerHTML=`
+
+<td>${index+1}</td>
+
+<td>
+<strong>${item.student}</strong>
+</td>
+
+<td>${item.className}</td>
+
+<td>
+${item.rule}
+</td>
+
+<td>
+
+${
+item.confession==="Haa"
+
+?
+
+'<span class="badge badge-clean">Haa</span>'
+
+:
+
+'<span class="badge badge-danger">Maya</span>'
+
+}
+
+</td>
+
+<td>
+<strong>${item.points}</strong>
+</td>
+
+<td>
+${item.date}
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="deleteCase(${item.id})"
+>
+Tirtir
+</button>
+
+</td>
+
+`;
+
+body.appendChild(tr);
+
+});
+
+}
+
+
+/* =====================================================
+   TIRTIR
+===================================================== */
+
+function deleteCase(id){
+
+const found =
+cases.find(item=>item.id===id);
+
+if(!found)return;
+
+
+const confirmDelete =
+confirm(
+"Ma hubtaa inaad tirtirayso diiwaanka "+found.student+"?"
+);
+
+
+if(!confirmDelete)return;
+
+
+cases =
+cases.filter(item=>item.id!==id);
+
+
+localStorage.setItem(
+"studentAccountabilityCases",
+JSON.stringify(cases)
+);
+
+
+updateDashboard();
+
+displayStudents();
+
+displayRecords();
+
+displayRepeat();
+
+displayRecent();
+
+}
+
+
+/* =====================================================
+   ARDAYDA SOO NOQOTAY
+===================================================== */
+
+function displayRepeat(){
+
+const container =
+document.getElementById("repeatContainer");
+
+container.innerHTML="";
+
+
+const studentsWithCases={};
+
+
+cases.forEach(item=>{
+
+if(!studentsWithCases[item.student]){
+
+studentsWithCases[item.student]=[];
+
+}
+
+studentsWithCases[item.student].push(item);
+
+});
+
+
+const repeated =
+Object.entries(studentsWithCases)
+.filter(
+([student,list])=>list.length>=2
+);
+
+
+if(repeated.length===0){
+
+container.innerHTML=`
+
+<div class="empty">
+
+🎉 Weli ma jiro arday leh laba dhacdo ama ka badan.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+repeated.forEach(
+([student,list])=>{
+
+const totalPoints =
+list.reduce(
+(total,item)=>total+item.points,
+0
+);
+
+
+const className =
+list[0].className;
+
+
+let html=`
+
+<div class="repeat-card">
+
+<h3>
+🔁 ${student}
+</h3>
+
+<div class="repeat-details">
+
+<strong>Fasal:</strong>
+${className}
+
+<br>
+
+<strong>Dhacdooyin:</strong>
+${list.length}
+
+<br>
+
+<strong>Wadarta Points:</strong>
+${totalPoints}
+
+</div>
+
+<hr style="margin:12px 0;border:0;border-top:1px solid #fecdd3">
+
+`;
+
+
+list.forEach(item=>{
+
+html+=`
+
+<div style="margin-bottom:10px">
+
+<strong>
+${item.rule}
+</strong>
+
+<br>
+
+<small>
+
+Taariikh:
+${item.date}
+
+<br>
+
+Qirasho:
+${item.confession}
+
+<br>
+
+Points:
+${item.points}
+
+${
+item.description
+?
+"<br>Faahfaahin: "+item.description
+:
+""
+}
+
+</small>
+
+</div>
+
+`;
+
+});
+
+
+html+=`</div>`;
+
+container.innerHTML+=html;
+
+});
+
+}
+
+
+/* =====================================================
+   DHAQDOOYINKII UGU DAMBEEYEY
+===================================================== */
+
+function displayRecent(){
+
+const container =
+document.getElementById("recentCases");
+
+container.innerHTML="";
+
+
+if(cases.length===0){
+
+container.innerHTML=`
+
+<div class="empty">
+
+📭 Weli wax khalad ah lama xareyn.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+const recent =
+[...cases]
+.reverse()
+.slice(0,5);
+
+
+recent.forEach(item=>{
+
+container.innerHTML+=`
+
+<div class="student">
+
+<div>
+
+<div class="student-name">
+${item.student}
+</div>
+
+<div class="student-number">
+
+${item.className}
+•
+${item.rule}
+•
+${item.date}
+
+</div>
+
+</div>
+
+<div>
+
+<span class="badge badge-danger">
+
+${item.points} Points
+
+</span>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function updateDashboard(){
+
+document.getElementById("totalStudents")
+.innerText=40;
+
+
+document.getElementById("totalCases")
+.innerText=cases.length;
+
+
+const totalPoints =
+cases.reduce(
+(total,item)=>total+item.points,
+0
+);
+
+
+document.getElementById("totalPoints")
+.innerText=totalPoints;
+
+}
+
+
+/* =====================================================
+   TAARIIKHDA MAANTA
+===================================================== */
+
+function getToday(){
+
+const now=new Date();
+
+const year=
+now.getFullYear();
+
+const month=
+String(now.getMonth()+1)
+.padStart(2,"0");
+
+const day=
+String(now.getDate())
+.padStart(2,"0");
+
+return year+"-"+month+"-"+day;
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+document.getElementById("caseDate")
+.value=getToday();
+
+displayStudents();
+
+displayRules();
+
+loadRules();
+
+updateDashboard();
+
+displayRecords();
+
+displayRepeat();
+
+displayRecent();
+
+</script>
+
+</body>
+</html>
